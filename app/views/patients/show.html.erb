@@ -1,11 +1,5 @@
-<h1><%= @patient.name %></h1>
-<h4>Age: <%= @patient.age %></h4>
-<br>
-<h3>Appointments:</h3>
-<br>
-<%= @patient.appointments.each do |appointment| %>
-<% date = appointment.appointment_datetime %>
-<p>Time: <%= date.strftime("%B") %> <%= date.strftime("%e") %>, <%= date.strftime("%Y") %> at <%= date.strftime("%H") %>:<%= date.strftime("%M") %><br>
-  Doctor: <%= link_to appointment.doctor.name, doctor_path(appointment.doctor) %>
-  <br>
+<%= @patient.name %><br>
+<% @patient.appointments.each do |appointment| %>
+  <% @patient_doctor = @patient.doctors.find(appointment.doctor_id) %>
+  <%= link_to @patient_doctor.name, doctor_path(@patient_doctor) %> - <%= link_to appointment.appointment_datetime.strftime("%B %d, %Y at %k:%M"), appointment_path(appointment) %><br>
 <% end %>
