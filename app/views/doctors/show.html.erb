@@ -1,2 +1,6 @@
 <%= @doctor.name %>
 <%= @doctor.department %>
+
+<% @doctor.appointments.each do |appo| %>
+    <%= appo %>
+<% end %>
